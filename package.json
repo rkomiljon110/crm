@@ -1,0 +1,37 @@
+{
+  "name": "savdo-erp",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "npm@11.19.0",
+  "description": "O'zbekiston bozori uchun omni-channel CRM/POS/ERP ekotizimi",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --parallel --cache-dir=.turbo",
+    "build": "turbo run build --cache-dir=.turbo",
+    "typecheck": "turbo run typecheck --cache-dir=.turbo",
+    "db:up": "node scripts/dev-db.mjs start",
+    "db:stop": "node scripts/dev-db.mjs stop",
+    "db:generate": "npm run generate -w @repo/database",
+    "db:migrate": "npm run migrate:dev -w @repo/database",
+    "db:deploy": "npm run migrate:deploy -w @repo/database",
+    "db:seed": "npm run seed -w @repo/database",
+    "db:push": "npm run push -w @repo/database",
+    "db:studio": "npm run studio -w @repo/database",
+    "db:verify-rls": "node --env-file=.env scripts/verify-rls.mjs",
+    "verify:sales": "node --env-file=.env scripts/verify-sales.mjs",
+    "verify:demo": "node --env-file=.env scripts/verify-demo.mjs"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^8.0.0",
+    "embedded-postgres": "^18.4.0-beta.17",
+    "pg": "^8.23.1",
+    "turbo": "^2.5.0",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 98%;
+    --foreground: 160 18% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 160 18% 12%;
+    --primary: 160 84% 26%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 150 20% 94%;
+    --secondary-foreground: 160 25% 18%;
+    --muted: 40 16% 94%;
+    --muted-foreground: 160 8% 42%;
+    --accent: 158 30% 92%;
+    --accent-foreground: 160 30% 18%;
+    --destructive: 0 72% 46%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 152 65% 32%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 44%;
+    --warning-foreground: 30 40% 12%;
+    --border: 160 10% 88%;
+    --input: 160 10% 86%;
+    --ring: 160 84% 26%;
+    --radius: 0.65rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    @apply bg-primary/15;
+  }
+}
+
+@layer utilities {
+  .money {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* 80mm termal printer uchun chek */
+@media print {
+  @page {
+    size: 80mm auto;
+    margin: 3mm;
+  }
+
+  body {
+    background: #fff !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .receipt-sheet {
+    width: 74mm !important;
+    max-width: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}

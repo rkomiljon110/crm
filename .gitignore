@@ -1,0 +1,30 @@
+node_modules/
+.next/
+.turbo/
+.tmp/
+.dev.log
+.pgdata.log
+out/
+build/
+dist/
+coverage/
+
+# Muhit fayllari (maxfiy)
+.env
+.env*.local
+
+# Lokal PostgreSQL ma'lumotlari
+.pgdata/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Prisma
+prisma/*.db
+prisma/*.db-journal
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
