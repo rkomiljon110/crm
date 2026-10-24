@@ -10,6 +10,7 @@ import {
   Minus,
   PackageSearch,
   Plus,
+  Printer,
   ReceiptText,
   RefreshCw,
   ScanBarcode,
@@ -896,7 +897,16 @@ export function PosTerminal({ userName, storeName }: { userName: string; storeNa
               </div>
             </div>
           )}
-          <DialogFooter>
+          <DialogFooter className="sm:justify-between">
+            <Button
+              variant="outline"
+              onClick={() => {
+                if (!receipt) return;
+                window.open(`/receipt/${receipt.id}?print=1`, "_blank", "noopener,noreferrer");
+              }}
+            >
+              <Printer /> Chop etish
+            </Button>
             <Button onClick={() => setReceipt(null)}>Yangi savdo</Button>
           </DialogFooter>
         </DialogContent>

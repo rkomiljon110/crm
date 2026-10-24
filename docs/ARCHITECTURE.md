@@ -386,8 +386,9 @@ klient retry'si xavfsiz. Batch 1–100 chek, har biri alohida tranzaksiyada.
   ko'rsatiladi.
 - Smena: `CashShift` ochish, X-hisobot (joriy holat), Z-hisobot (yopish,
   kutilgan naqd = ochilish + naqd tushum, farq yoziladi) — API va UI tayyor.
-- 80mm ESC/POS printer, chekni qayta chop etish va refund oqimi keyingi bosqichda;
-  hozir `RETURN` so'rovi `RETURN_UNSUPPORTED` bilan rad etiladi.
+- 80mm chek brauzer print CSS bilan tayyor: `/receipt/:id` (ixtiyoriy avtomatik
+  chop etish), savdolar jurnalida qayta ochish. Native ESC/POS, kassa tortmasi va
+  refund oqimi keyingi bosqichda; hozir `RETURN` `RETURN_UNSUPPORTED` bilan rad etiladi.
 
 ### 8.2 Desktop (Tauri 2)
 
@@ -486,8 +487,9 @@ log'ni o'zgartirib bo'lmaydigan arxivga eksport qilish.
   POS bootstrap, CSRF, OpenAPI va `/api-docs` (64 check). `verify-rls` — tenant
   izolyatsiyasi (owner va API uchun `savdo_app` roli). API explorer brauzer
   smoke — 37/37: login, barcha demo endpointlar, 401/409/422 va ruxsatsiz rol.
-  POS terminal brauzer smoke — 16/16: katalog, shtrix-kod, naqd/nasiya cheki,
-  smena ochish va Z-hisobot. Keyingi: ESC/POS printer, refund va savdo jadvali.
+  POS va chek brauzer smoke — 22/22: katalog, shtrix-kod, naqd/nasiya cheki,
+  80mm chek, qayta chop etish havolasi, smena ochish va Z-hisobot. Keyingi:
+  native ESC/POS printer, refund va savdo filtrlari.
 
 ---
 

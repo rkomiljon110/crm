@@ -27,12 +27,12 @@ const AVAILABLE: Array<{
   permission: string | null;
 }> = [
   { href: "/pos", label: "Kassa (POS)", icon: ScanBarcode, permission: "pos.use" },
+  { href: "/sales", label: "Savdolar", icon: ReceiptText, permission: "sales.view" },
   { href: "/dashboard", label: "Boshqaruv paneli", icon: LayoutDashboard, permission: "dashboard.view" },
   { href: "/api-docs", label: "API interfeysi", icon: Braces, permission: null },
 ];
 
 const UPCOMING = [
-  { href: "/sales", label: "Savdolar", icon: ReceiptText, permission: "sales.view", stage: "4-bosqich" },
   { href: "/customers", label: "Nasiya daftari", icon: NotebookPen, permission: "customers.view", stage: "6-bosqich" },
   { href: "/products", label: "Tovarlar", icon: Package, permission: "products.view", stage: "3-bosqich" },
   { href: "/inventory", label: "Ombor / Reviziya", icon: Boxes, permission: "inventory.view", stage: "3-bosqich" },

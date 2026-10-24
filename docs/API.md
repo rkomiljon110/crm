@@ -331,6 +331,10 @@ Format:
 
 Brauzerda ochish: `http://localhost:3000/api-docs`.
 
+Kassa va chek sahifalari: **`/pos`** — savdo terminali, **`/sales`** — cheklar
+jurnali, **`/receipt/:id`** — 80mm chek. Chek sahifasi `?print=1` bilan brauzer
+print oynasini avtomatik ochadi; savdolar jurnalida har bir chek qayta ochiladi.
+
 ---
 
 ## 10. Tekshiruv

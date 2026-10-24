@@ -15,7 +15,7 @@ idempotent offline-sync API va real POS terminal UI.
 
 | Qatlam | Holat |
 | --- | --- |
-| `apps/web` — Next.js 14 admin portal, RBAC, POS terminal va API, smena X/Z, `/api-docs` | Ishlaydi |
+| `apps/web` — Next.js 14 admin portal, RBAC, POS terminal, savdolar jurnali, 80mm chek, API, smena X/Z, `/api-docs` | Ishlaydi |
 | `packages/database` — PostgreSQL + Prisma, 28 model, 4 migratsiya, RLS, seed | Ishlaydi |
 | `packages/shared` — 27 granular ruxsat, 6 rol, Zod sxemalari, moliya/sana formulalari | Ishlaydi |
 | `packages/ui` — umumiy Tailwind/Radix dizayn tizimi | Ishlaydi |
@@ -61,8 +61,9 @@ Biznes kodi: **`baraka`** · parol: **`demo1234`**
 
 Kassir `/pos` dagi real kassa terminaliga, omborchi `/products` ga tushadi; ruxsati
 yo'q sahifa `/403` ga yo'naltiriladi. POSda shtrix-kod/nom qidiruvi, savat, aralash
-to'lov, nasiya, smena ochish/yopish va chek oynasi ishlaydi. Qolgan modul sahifalari
-hozircha rejalashtirilgan bosqichni ko'rsatadi.
+to'lov, nasiya, smena ochish/yopish va chek oynasi ishlaydi. Har bir chek 80mm
+formatda brauzerdan chop etiladi; **Savdolar** jurnalida eski chekni qayta ochish mumkin.
+Qolgan modul sahifalari hozircha rejalashtirilgan bosqichni ko'rsatadi.
 
 ## Buyruqlar
 
@@ -125,9 +126,10 @@ hozircha rejalashtirilgan bosqichni ko'rsatadi.
   endpointlari, barcha demo tugmalari real smena/ombor/tovar IDlari bilan,
   onlayn chek `201`, offline sync `200 processed`, 401/409/422 xatolari
   interfeysda va buxgalter uchun `pos.use` chegarasi.
-- POS terminal brauzer smoke — **16/16**: smena holati, shtrix-kod bilan savatga
-  qo'shish, naqd chek `201`, nasiya cheki va qoldiqning kamayishi, menejer uchun
-  smena ochish va Z-hisobot bilan yopish.
+- POS va chek brauzer smoke — **22/22**: smena holati, shtrix-kod bilan savatga
+  qo'shish, naqd chek `201`, nasiya cheki, qoldiqning kamayishi, 80mm chek
+  sahifasi, savdolar jurnalida qayta chop etish havolasi, menejer uchun smena
+  ochish va Z-hisobot bilan yopish.
 - `npm run build` — `/pos`, `/api-docs`, `/api/openapi` va barcha POS API route'lari
   bilan produksiya build muvaffaqiyatli.
 
@@ -144,8 +146,8 @@ hozircha rejalashtirilgan bosqichni ko'rsatadi.
 
 ## Keyingi bosqichlar
 
-1. **4-bosqich (davom)** — POS uchun ESC/POS chek printer, qaytarish (refund) oqimi,
-   savdo tarixi va chekni qayta chop etish.
+1. **4-bosqich (davom)** — Tauri orqali native ESC/POS printer va kassa tortmasini
+   ochish, qaytarish (refund) oqimi, savdolar uchun filtr/qidiruv.
 2. **5-bosqich** — moliya/P&L, ombor reviziyasi, xodimlar boshqaruvi.
 3. **6-bosqich** — nasiya daftari va Telegram bot (share + bot API).
 4. **Platformalar** — Tauri 2 desktop (PWA/offline core ustida), Expo mobil kassa.
