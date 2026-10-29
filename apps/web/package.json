@@ -6,7 +6,8 @@
     "dev": "dotenv -e ../../.env -- next dev -H 0.0.0.0 -p 3000",
     "build": "dotenv -e ../../.env -- next build",
     "start": "dotenv -e ../../.env -- next start -H 0.0.0.0 -p 3000",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "next lint"
   },
   "dependencies": {
     "@repo/database": "*",
@@ -32,5 +33,12 @@
     "tailwindcss": "^3.4.17",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.7.3"
+  },
+  "apps/web/package": {
+    "json": {
+      "scripts": {
+        "lint": "next lint"
+      }
+    }
   }
 }

@@ -10,6 +10,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  Input,
+  Select,
   Table,
   TableBody,
   TableCell,
@@ -18,7 +20,7 @@ import {
   TableRow,
 } from "@repo/ui";
 import { requirePageUser } from "@/lib/auth";
-import { getRecentSales } from "@/lib/sales/receipts";
+import { listSales } from "@/lib/sales/receipts";
 
 export const metadata: Metadata = { title: "Savdolar · Savdo ERP" };
 export const dynamic = "force-dynamic";
@@ -37,9 +39,33 @@ const PAYMENT_LABELS: Record<string, string> = {
   REFUNDED: "Qaytarilgan",
 };
 
-export default async function SalesPage() {
+export default async function SalesPage({
+  searchParams,
+}: {
+  searchParams: Record<string, string | string[] | undefined>;
+}) {
   const user = await requirePageUser("sales.view");
-  const sales = await getRecentSales(user.tenantId);
+
+  const asString = (key: string) => {
+    const raw = searchParams[key];
+    const value = Array.isArray(raw) ? raw[0] : raw;
+    return value?.trim() || "";
+  };
+  const from = asString("from");
+  const to = asString("to");
+  const paymentStatus = asString("paymentStatus");
+
+  const result = await listSales(user.tenantId, {
+    limit: 50,
+    offset: 0,
+    paymentStatus: paymentStatus in PAYMENT_LABELS ? paymentStatus : undefined,
+    // Kassir/offisant `settings.manage` ruxsatisiz faqat o'z filialini ko'radi.
+    storeId: user.permissions.includes("settings.manage") ? undefined : user.storeId ?? undefined,
+    ...(from ? { from: new Date(`${from}T00:00:00`) } : {}),
+    ...(to ? { to: new Date(`${to}T23:59:59.999`) } : {}),
+  });
+  const sales = result.orders;
+  const hasFilters = Boolean(from || to || paymentStatus);
 
   return (
     <div className="space-y-6">
@@ -50,7 +76,7 @@ export default async function SalesPage() {
             <h1 className="text-2xl font-semibold tracking-tight">Savdolar</h1>
           </div>
           <p className="mt-1 text-sm text-muted-foreground">
-            Oxirgi {sales.length} chek · chekni qayta chop etish uchun oching
+            {sales.length} ta chek · jami {result.meta.total} · chekni qayta chop etish uchun oching
           </p>
         </div>
         <Button asChild>
@@ -65,6 +91,33 @@ export default async function SalesPage() {
             Har bir chek 80mm formatda chop etiladi yoki PDF sifatida saqlanadi.
           </CardDescription>
         </CardHeader>
+        <CardContent className="px-6 pb-0">
+          <form method="get" className="flex flex-wrap items-end gap-2">
+            <div className="w-40">
+              <label htmlFor="sales-from" className="mb-1 block text-xs text-muted-foreground">Boshlanish</label>
+              <Input id="sales-from" name="from" type="date" defaultValue={from} className="h-8" />
+            </div>
+            <div className="w-40">
+              <label htmlFor="sales-to" className="mb-1 block text-xs text-muted-foreground">Tugash</label>
+              <Input id="sales-to" name="to" type="date" defaultValue={to} className="h-8" />
+            </div>
+            <div className="w-44">
+              <label htmlFor="sales-payment" className="mb-1 block text-xs text-muted-foreground">To&apos;lov</label>
+              <Select id="sales-payment" name="paymentStatus" defaultValue={paymentStatus} className="h-8">
+                <option value="">Barchasi</option>
+                {Object.entries(PAYMENT_LABELS).map(([value, label]) => (
+                  <option key={value} value={value}>{label}</option>
+                ))}
+              </Select>
+            </div>
+            <Button type="submit" size="sm">Filtr</Button>
+            {hasFilters && (
+              <Button asChild size="sm" variant="ghost">
+                <Link href="/sales">Tozalash</Link>
+              </Button>
+            )}
+          </form>
+        </CardContent>
         <CardContent className="px-0 pb-0">
           {sales.length === 0 ? (
             <p className="px-6 pb-6 text-sm text-muted-foreground">

@@ -369,6 +369,25 @@ export const openApiDocument = {
       },
     },
     "/api/v1/orders": {
+      get: {
+        tags: ["Savdo"],
+        summary: "Cheklar jurnali (filtrlar bilan)",
+        parameters: [
+          { name: "limit", in: "query", schema: { type: "integer", minimum: 1, maximum: 100, default: 50 } },
+          { name: "offset", in: "query", schema: { type: "integer", minimum: 0, default: 0 } },
+          { name: "status", in: "query", schema: { type: "string", enum: ["DRAFT", "COMPLETED", "CANCELLED", "REFUNDED"] } },
+          { name: "paymentStatus", in: "query", schema: { type: "string", enum: ["PAID", "PARTIAL", "UNPAID", "REFUNDED"] } },
+          { name: "customerId", in: "query", schema: { type: "string" } },
+          { name: "storeId", in: "query", description: "settings.manage ruxsati kerak", schema: { type: "string" } },
+          { name: "from", in: "query", description: "ISO 8601 yoki YYYY-MM-DD", schema: { type: "string", format: "date-time" } },
+          { name: "to", in: "query", description: "ISO 8601 yoki YYYY-MM-DD", schema: { type: "string", format: "date-time" } },
+        ],
+        responses: {
+          "200": { description: "meta (total, limit, offset, serverTime) va cheklar ro'yxati" },
+          "403": { description: "sales.view ruxsati yo'q yoki boshqa filial storeId", content: { "application/json": { schema: ERROR_SCHEMA } } },
+          "422": { description: "Filtrlar noto'g'ri", content: { "application/json": { schema: ERROR_SCHEMA } } },
+        },
+      },
       post: {
         tags: ["Savdo"],
         summary: "Onlayn POS cheki",

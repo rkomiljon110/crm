@@ -144,6 +144,16 @@ Qolgan modul sahifalari hozircha rejalashtirilgan bosqichni ko'rsatadi.
    (`NODE_ENV=production`) ta'minlang.
 5. Zaxira (PITR) va monitoringni sozlang.
 
+## Versiyalar (branchlar)
+
+| Branch | Mazmuni |
+| --- | --- |
+| `v1-demo` | Yadro: multi-tenant Prisma/RLS, RBAC, savdo yadrosi, smenalar, sync API, `/api-docs` |
+| `v2-pos` | + POS terminal (`/pos`), 80mm chek `/receipt/:id`, avto-chop etish, savdolar jurnali |
+| `v3-full` | + ESLint paketini ko'rnavis (0 xato), `GET /api/v1/orders` filtrlar bilan, Savdolar sahifasi filtrformasi, dashboard COGS SUM optimizatsiyasi |
+
+Stabil versiya `main` branchda; `v3-full` — barcha funksiyalarni o'z ichiga olgan yakuniy holat.
+
 ## Keyingi bosqichlar
 
 1. **4-bosqich (davom)** — Tauri orqali native ESC/POS printer va kassa tortmasini

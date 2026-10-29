@@ -150,7 +150,7 @@ export default async function PlannedModulePage({ params }: { params: { module: 
             <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
             <span>
               Sizning rolingizda bu modulga kirish ruxsati bor ({info.permission}). Sahifa
-              funksiyalari keyingi bosqichda ulanadi; hozir ma'lumotlar bazasi, RBAC va tenant
+              funksiyalari keyingi bosqichda ulanadi; hozir ma&apos;lumotlar bazasi, RBAC va tenant
               izolyatsiyasi tayyor.
             </span>
           </div>

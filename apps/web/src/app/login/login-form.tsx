@@ -87,16 +87,16 @@ export function LoginForm() {
             </div>
             <div>
               <p className="text-lg font-semibold tracking-tight">Savdo ERP</p>
-              <p className="text-xs text-emerald-100/70">O'zbekiston biznesi uchun</p>
+              <p className="text-xs text-emerald-100/70">O&apos;zbekiston biznesi uchun</p>
             </div>
           </div>
 
           <h1 className="mt-16 max-w-md text-4xl font-semibold leading-tight tracking-tight">
-            Do'kon, ombor va nasiya — bitta ishonchli tizimda.
+            Do&apos;kon, ombor va nasiya — bitta ishonchli tizimda.
           </h1>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-emerald-50/80">
             Web, desktop va mobil kassa uchun yagona arxitektura. Internet uzilsa ham savdo
-            to'xtamaydi, ma'lumotlar keyin avtomatik sinxronlanadi.
+            to&apos;xtamaydi, ma&apos;lumotlar keyin avtomatik sinxronlanadi.
           </p>
 
           <div className="mt-10 grid max-w-lg grid-cols-2 gap-4">
@@ -125,7 +125,7 @@ export function LoginForm() {
             </div>
             <div>
               <p className="font-semibold">Savdo ERP</p>
-              <p className="text-xs text-muted-foreground">O'zbekiston biznesi uchun</p>
+              <p className="text-xs text-muted-foreground">O&apos;zbekiston biznesi uchun</p>
             </div>
           </div>
 
@@ -218,7 +218,7 @@ export function LoginForm() {
                   onClick={fillDemo}
                   className="font-medium text-primary underline-offset-2 hover:underline"
                 >
-                  To'ldirish
+                  To&apos;ldirish
                 </button>
               </div>
               <div className="space-y-1 text-muted-foreground">
@@ -233,7 +233,7 @@ export function LoginForm() {
           </Card>
 
           <p className="mt-8 text-center text-xs text-muted-foreground">
-            © 2026 Savdo ERP · Toshkent, O'zbekiston
+            © 2026 Savdo ERP · Toshkent, O&apos;zbekiston
           </p>
         </div>
       </div>

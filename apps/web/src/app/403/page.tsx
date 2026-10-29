@@ -11,10 +11,10 @@ export default function ForbiddenPage() {
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-destructive/10">
           <ShieldAlert className="h-6 w-6 text-destructive" />
         </div>
-        <h1 className="mt-5 text-xl font-semibold">Ruxsat yo'q</h1>
+        <h1 className="mt-5 text-xl font-semibold">Ruxsat yo&apos;q</h1>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          Bu sahifaga kirish uchun sizning rolingizda yetarli huquq yo'q. Biznes egasi bilan
-          bog'lanib, ruxsatlarni tekshirishni so'rang.
+          Bu sahifaga kirish uchun sizning rolingizda yetarli huquq yo&apos;q. Biznes egasi bilan
+          bog&apos;lanib, ruxsatlarni tekshirishni so&apos;rang.
         </p>
         <div className="mt-6">
           <Button asChild>

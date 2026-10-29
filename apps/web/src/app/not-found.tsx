@@ -11,7 +11,7 @@ export default function NotFound() {
         </div>
         <h1 className="mt-5 text-xl font-semibold">Sahifa topilmadi</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Bu sahifa hozircha mavjud emas yoki manzil o'zgargan.
+          Bu sahifa hozircha mavjud emas yoki manzil o&apos;zgargan.
         </p>
         <div className="mt-6">
           <Button asChild>

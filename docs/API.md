@@ -140,6 +140,10 @@ curl -s -b "$COOKIE" \
     "note": "POS demo"
   }' \
   "$BASE/api/v1/orders"
+  # GET /api/v1/orders — cheklar jurnali:
+  #   ?limit=50&offset=0&paymentStatus=UNPAID&from=2026-10-01&to=2026-10-31
+  #   javob: { meta: { total, limit, offset, serverTime }, orders: [...] }
+  #   status: DRAFT|COMPLETED|CANCELLED|REFUNDED, paymentStatus: PAID|PARTIAL|UNPAID|REFUNDED
 ```
 
 Muvaffaqiyatli javob `201`:

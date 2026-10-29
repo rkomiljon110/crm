@@ -138,7 +138,7 @@ export default async function DashboardPage() {
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant={roleBadgeVariant}>{user.roleName}</Badge>
-          <Badge variant="outline">1 USD = {formatNumber(data.tenant.usdRate)} so'm</Badge>
+          <Badge variant="outline">1 USD = {formatNumber(data.tenant.usdRate)} so&apos;m</Badge>
           <Badge variant="success" className="gap-1">
             <CheckCircle2 className="h-3 w-3" />
             1–3 bosqich yakunlandi
@@ -203,8 +203,8 @@ export default async function DashboardPage() {
         {/* Bazaviy ko'rsatkichlar */}
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Tizimdagi ma'lumotlar</CardTitle>
-            <CardDescription>Demo tenant bo'yicha real qaydlar</CardDescription>
+            <CardTitle>Tizimdagi ma&apos;lumotlar</CardTitle>
+            <CardDescription>Demo tenant bo&apos;yicha real qaydlar</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">

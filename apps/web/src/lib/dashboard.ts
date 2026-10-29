@@ -56,7 +56,7 @@ export async function getOverview(tenantId: string): Promise<Overview> {
       orders,
       permissions,
       revenue30,
-      costItems,
+      cogsAgg,
       expensesMonth,
       receivablesAgg,
       payablesAgg,
@@ -80,13 +80,18 @@ export async function getOverview(tenantId: string): Promise<Overview> {
         where: { tenantId, type: "SALE", status: "COMPLETED", createdAt: { gte: from30 } },
         _sum: { totalAmount: true },
       }),
-      tx.orderItem.findMany({
-        where: {
-          tenantId,
-          order: { type: "SALE", status: "COMPLETED", createdAt: { gte: from30 } },
-        },
-        select: { quantity: true, unitCost: true },
-      }),
+      // COGS serverda bitta SUM qilib hisoblanadi: 30 kunlik minglab
+      // OrderItem qatorlarini klientga yuklab olib saralash o'rniga faqat
+      // bitta qator qaytadi.
+      tx.$queryRaw<Array<{ cogs: number }>>`
+        SELECT COALESCE(SUM(oi."quantity" * oi."unitCost"), 0)::float8 AS cogs
+        FROM "OrderItem" oi
+        JOIN "Order" o ON o.id = oi."orderId"
+        WHERE o."tenantId" = ${tenantId}
+          AND o."type" = 'SALE'
+          AND o."status" = 'COMPLETED'
+          AND o."createdAt" >= ${from30}
+      `,
       tx.expense.aggregate({
         where: { tenantId, date: { gte: monthStart } },
         _sum: { amount: true },
@@ -137,10 +142,7 @@ export async function getOverview(tenantId: string): Promise<Overview> {
     ]);
 
     const revenue = Number(revenue30._sum.totalAmount ?? 0);
-    const cogs = costItems.reduce(
-      (acc, item) => acc + Number(item.quantity) * Number(item.unitCost),
-      0,
-    );
+    const cogs = Number(cogsAgg[0]?.cogs ?? 0);
 
     return {
       tenant: {
